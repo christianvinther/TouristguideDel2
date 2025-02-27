@@ -5,8 +5,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import demo.touristguide.model.TouristAttraction;
 import demo.touristguide.service.TouristService;
-
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -50,6 +48,36 @@ public class TouristController {
         touristService.addAttraction(attraction);
         return "redirect:/attractions";
     }
+
+    @GetMapping("/{name}/edit")
+    public String showEditForm(@PathVariable String name, Model model) {
+        TouristAttraction attraction = touristService.getAttractionByName(name);
+        if (attraction == null) {
+            return "redirect:/attractions";
+        }
+
+        List<String> cities = touristService.getAllCities();
+        List<String> allTags = touristService.getAllTags();
+
+        model.addAttribute("attraction", attraction);
+        model.addAttribute("cities", cities);
+        model.addAttribute("allTags", allTags);
+
+        return "updateAttraction";
+    }
+
+    @PostMapping("/update")
+    public String updateAttraction(@ModelAttribute TouristAttraction attraction) {
+        touristService.updateAttraction(attraction);
+        return "redirect:/attractions";
+    }
+
+    @GetMapping("/{name}/delete")
+    public String deleteAttraction(@PathVariable String name) {
+        touristService.deleteAttraction(name);
+        return "redirect:/attractions";
+    }
+
 
 
 

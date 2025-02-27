@@ -104,26 +104,27 @@ public class TouristRepository {
         return null;
     }
 
-    //Opdaterer en attraktion hvis der opstår eksempelvis ny information eller mangler rettelser. (Update funktion)
-    public boolean updateAttraction(String name, String updateDesc){
-        for (TouristAttraction attraction : attractions){
-            if (attraction.getName().equalsIgnoreCase(name)){
-                attraction.setDescription(updateDesc);
-                return true;
+    public void updateAttraction(TouristAttraction updatedAttraction) {
+        for (TouristAttraction attraction : attractions) {
+            if (attraction.getName().equalsIgnoreCase(updatedAttraction.getName())) {
+                attraction.setDescription(updatedAttraction.getDescription());
+                attraction.setCity(updatedAttraction.getCity());
+                attraction.setTags(updatedAttraction.getTags());
+                return;
             }
         }
-        return false;
     }
 
+
+
     //Sletter en attraktion. (Delete funktion)
-    public boolean deleteAttraction(String name){
+    public void deleteAttraction(String name){
         for (int i = 0; i < attractions.size(); i++){
             if(attractions.get(i).getName().equalsIgnoreCase(name)){
                 attractions.remove(i);
-                return true;
+                return;
             }
 
         }
-        return false;
     }
 }

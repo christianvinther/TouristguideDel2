@@ -23,5 +23,12 @@ public class TouristController {
         return "attractionList";
     }
 
+    @GetMapping("/{name}/tags")
+    public String getAttractionTags(@PathVariable String name, Model model) {
+        TouristAttraction attraction = touristService.getAttractionByName(name);
+        model.addAttribute("attraction", attraction);
+        return "tags";
+    }
+
 
 }

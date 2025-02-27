@@ -19,7 +19,13 @@
     <tr th:each="attraction : ${attractions}">
         <td th:text="${attraction.name}"></td>
         <td th:text="${attraction.description}"></td>
+        <td>
+            <a th:href="@{'/' + ${attraction.name} + '/tags'}">
+                <button type="button">Tags</button>
+            </a>
+        </td>
     </tr>
+
     </tbody>
 </table>
 

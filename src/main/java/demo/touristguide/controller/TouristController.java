@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import demo.touristguide.model.TouristAttraction;
 import demo.touristguide.service.TouristService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -29,6 +30,29 @@ public class TouristController {
         model.addAttribute("attraction", attraction);
         return "tags";
     }
+
+    @GetMapping("/add")
+    public String showAddForm(Model model) {
+
+        TouristAttraction newAttraction = new TouristAttraction("", "", "");
+        List<String> cities = touristService.getAllCities();
+        List<String> allTags = touristService.getAllTags();
+
+        model.addAttribute("attraction", newAttraction);
+        model.addAttribute("cities", cities);
+        model.addAttribute("allTags", allTags);
+
+        return "addAttraction";
+    }
+
+    @PostMapping("/save")
+    public String saveAttraction(@ModelAttribute TouristAttraction attraction) {
+        touristService.addAttraction(attraction);
+        return "redirect:/attractions";
+    }
+
+
+
 
 
 }

@@ -14,10 +14,18 @@ public class TouristService {
         this.touristRepository = touristRepository;
     }
 
-    //Tilføjer en attraktion til Arraylisten igennem touristRepository. (Create funktion)
-    public void addAttraction(TouristAttraction attraction){
-        touristRepository.addAttraction(attraction);
-    }
+        public void addAttraction(TouristAttraction attraction){
+            touristRepository.addAttraction(attraction);
+        }
+
+        public List<String> getAllCities() {
+            return touristRepository.getAllCities();
+        }
+
+        public List<String> getAllTags() {
+            return touristRepository.getAllTags();
+        }
+
 
     //Lister alle attraktioner igennem touristRepository. (Read funktion)
     public List<TouristAttraction> getAllAttractions(){

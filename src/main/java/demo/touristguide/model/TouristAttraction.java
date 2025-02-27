@@ -17,28 +17,17 @@ public class TouristAttraction {
         this.city = city;
     }
 
+
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public List<String> getTags() {
         return tags;
-    }
-
-    public void setTags(List<String> tags) {
-        this.tags = tags;
     }
 
     public void addTag(String tag) {
@@ -51,5 +40,17 @@ public class TouristAttraction {
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setTags(List<String> tags) {
+        this.tags = tags;
     }
 }

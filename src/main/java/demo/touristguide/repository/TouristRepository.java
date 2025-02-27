@@ -61,20 +61,43 @@ public class TouristRepository {
         attractions.add(aarhusFestuge);
     }
 
-    //Tilføjer en attraktion til Arraylisten. (Create funktion)
-    public void addAttraction(TouristAttraction attraction){
-        attractions.add(attraction);
+    public List<String> getAllCities() {
+        List<String> cities = new ArrayList<>();
+        for (TouristAttraction attraction : attractions) {
+            String city = attraction.getCity();
+            if (!cities.contains(city)) {
+                cities.add(city);
+            }
+        }
+
+        return cities;
     }
 
-    //Lister alle attraktioner. (Read funktion)
+    public List<String> getAllTags() {
+        List<String> tags = new ArrayList<>();
+        for (TouristAttraction attraction : attractions) {
+            for (String tag : attraction.getTags()) {
+                if (!tags.contains(tag)) {
+                    tags.add(tag);
+                }
+            }
+        }
+
+        return tags;
+    }
+
+    public void addAttraction(TouristAttraction attraction) {
+        attractions.add(attraction);
+
+    }
+
     public List<TouristAttraction> getAllAttractions() {
         return new ArrayList<>(attractions);
     }
 
-    //Henter en attraktion ud fra navnet. (Read funktion)
-    public TouristAttraction getAttractionByName(String name){
-        for (TouristAttraction attraction : attractions){
-            if (attraction.getName().equalsIgnoreCase(name)){
+    public TouristAttraction getAttractionByName(String name) {
+        for (TouristAttraction attraction : attractions) {
+            if (attraction.getName().equalsIgnoreCase(name)) {
                 return attraction;
             }
         }
